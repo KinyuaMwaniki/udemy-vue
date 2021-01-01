@@ -7,17 +7,16 @@
     <ul>
       <li>
         <!-- Child components -->
+        <!-- Values passed to components that are not strings are passed using v-bind -->
         <friend-contact
-          name="Felix Mwaniki"
-          phone-number="1234235213"
-          email-address="kinyuafelix4@gmail.com"
-          is-favorite="1"
-        ></friend-contact>
-        <friend-contact
-          name="Finix Mweaniki"
-          phone-number="1234235213"
-          email-address="kinya@gmail.com"
-          is-favorite="0"
+          v-for="friend in friends"
+          :key="friend.id"
+          :id="friend.id"
+          :name="friend.name"
+          :phone-number="friend.phone"
+          :email-address="friend.email"
+          :is-favorite="friend.isFavorite"
+          @toggle-favorite="toggleFavoriteStatus"
         ></friend-contact>
       </li>
     </ul>
@@ -35,16 +34,25 @@ export default {
           name: "Manuel Lorenz",
           phone: "0214312342342",
           email: "manuel@localhost.com",
+          isFavorite: true
         },
         {
           id: "julie",
           name: "Julie Jones",
           phone: "01234325423",
           email: "julie@localhost.com",
+          isFavorite:false
         },
       ],
     };
   },
+  methods: {
+    toggleFavoriteStatus(friendId)
+    {
+      const identifiedFriend = this.friends.find(friend => friend.id === friendId);
+      identifiedFriend.isFavorite = !identifiedFriend.isFavorite
+    }
+  }
 };
 </script>
 
