@@ -6,9 +6,9 @@
     <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
     <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
     <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
-
-    <component :is="selectedComponent"></component>
-
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
 
     <!-- START OF SLOTS -->
 
@@ -25,7 +25,6 @@
     </course-goals> -->
 
     <!-- END OF SLOTS -->
-
   </div>
 </template>
 
@@ -50,7 +49,7 @@ export default {
   },
   data() {
     return {
-      selectedComponent: 'active-goals',
+      selectedComponent: "active-goals",
       activeUser: {
         name: "Maximilian Schwarzmüller",
         description: "Site owner and admin",
@@ -59,11 +58,10 @@ export default {
     };
   },
   methods: {
-    setSelectedComponent(cmp)
-    {
+    setSelectedComponent(cmp) {
       this.selectedComponent = cmp;
-    }
-  }
+    },
+  },
 };
 </script>
 
