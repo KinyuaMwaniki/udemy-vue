@@ -1,4 +1,5 @@
 <template>
+
   <ul>
     <resource-item
       v-for="res in resources"
@@ -16,7 +17,7 @@ export default {
   components: {
     ResourceItem,
   },
-  props: ['resources'],
+  inject: ['resources'],
 };
 </script>
 
