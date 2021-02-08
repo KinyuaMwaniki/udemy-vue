@@ -1,10 +1,12 @@
 <template>
-  <div v-if="open" class="backdrop" @click="$emit('close')"></div>
-  <transition name="modal">
-  <dialog open v-if="open">
-    <slot></slot>
-  </dialog>
-  </transition>
+  <div>
+    <div v-if="open" class="backdrop" @click="$emit('close')"></div>
+    <transition name="modal">
+      <dialog open v-if="open">
+        <slot></slot>
+      </dialog>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -46,7 +48,7 @@ dialog {
 }
 
 .modal-leave-active {
-  animation: modal 0.3s ease-in reverse;  
+  animation: modal 0.3s ease-in reverse;
 }
 
 @keyframes modal {
