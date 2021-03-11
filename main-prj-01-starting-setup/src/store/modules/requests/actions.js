@@ -29,11 +29,14 @@ export default {
   },
 
   async fetchRequests(context) {
+    console.log("fetchRequests");
     const coachId = context.rootGetters.userId;
+    console.log(coachId);
     const response = await fetch(
       `https://udemymainproject-default-rtdb.firebaseio.com/requests/${coachId}.json`
     );
-    const responseData = await response.json;
+
+    const responseData =  await response.json();
 
     if (!response.ok) {
       const error = new Error(
@@ -50,7 +53,7 @@ export default {
             userEmail: responseData[key].userEmail,
             message: responseData[key].message,
         };
-        request.push(request);
+        requests.push(request);
     }
 
     context.commit('setRequests', requests);

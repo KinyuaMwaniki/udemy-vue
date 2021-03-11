@@ -42,10 +42,12 @@ export default {
         }
     },
     created() {
-      this.loadRequests;
+      console.log("created");
+      this.loadRequests();
     },
     methods: {
       async loadRequests() {
+        console.log("load");
         this.isLoading = true;
         try{
           await this.$store.dispatch('requests/fetchRequests')
